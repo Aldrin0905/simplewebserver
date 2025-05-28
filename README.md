@@ -1,8 +1,10 @@
 # EX01 Developing a Simple Webserver
-## Date:
+## Date:28-05-2025
+##reg:212223240005
+##Name:Aldrin S
 
 ## AIM:
-To develop a simple webserver to serve html pages and display the list of protocols in TCP/IP Protocol Suite.
+To develop a simple webserver to display the configuration details of my laptop.
 
 ## DESIGN STEPS:
 ### Step 1: 
@@ -15,30 +17,114 @@ Design of webserver workflow.
 Implementation using Python code.
 
 ### Step 4:
-Import the necessary modules.
+Serving the HTML pages.
 
 ### Step 5:
-Define a custom request handler.
-
-### Step 6:
-Start an HTTP server on a specific port.
-
-### Step 7:
-Run the Python script to serve web pages.
-
-### Step 8:
-Serve the HTML pages.
-
-### Step 9:
-Start the server script and check for errors.
-
-### Step 10:
-Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
+Testing the webserver.
 
 ## PROGRAM:
+```
+from http.server import HTTPServer,BaseHTTPRequestHandler
 
+content='''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specification</title>
+    <style>
+        body{
+            background-color: #ecffc4fe;
+        }
+        table {
+            width: 30%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+        td:first-child::after {
+            content: ":";
+            margin-left: 5px;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Laptop Specifications</h2>
+<table class="specifications-table">
+    <tr>
+        <th>Specification</th>
+        <th>Details</th>
+    </tr>
+    <tr>
+        <td>Brand</td>
+        <td>HP</td>
+    </tr>
+    <tr>
+        <td>Model</td>
+        <td>HP Pavilion</td>
+    </tr>
+    <tr>
+        <td>Processor</td>
+        <td>Intel Core i5 11th Gen</td>
+    </tr>
+    <tr>
+        <td>RAM</td>
+        <td>8 GB</td>
+    </tr>
+    <tr>
+        <td>Storage</td>
+        <td>512 GB</td>
+    </tr>
 
+    
+    <tr>
+        <td>Graphics</td>
+        <td>Integrated</td>
+    </tr>
+    <tr>
+        <td>Display</td>
+        <td>15.6 Inches</td>
+    </tr>
+    <tr>
+        <td>Battery Life</td>
+        <td>Up to 10 hours</td>
+    </tr>
+    <tr>
+        <td>Operating System</td>
+        <td>Windows 11</td>
+    </tr>
+    <tr>
+        <td>Special Feature</td>
+        <td>Anti Glare Screen</td>
+    </tr>
+</table>
+</body>
+</html>
+'''
+
+class MyServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
+        self.end_headers()
+        self.wfile.write(content.encode())
+
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
+httpd.serve_forever()
+```
 ## OUTPUT:
+![image](https://github.com/user-attachments/assets/b04dd8ca-1a29-4689-a5bc-c90a6a3c569a)
 
 
 ## RESULT:
