@@ -1,5 +1,7 @@
 # EX01 Developing a Simple Webserver
 ## Date:26-09-2024
+#reg:212223240005
+#Name:Aldrin S
 
 ## AIM:
 To develop a simple webserver to display the configuration details of my laptop.
